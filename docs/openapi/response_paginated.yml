@@ -1,0 +1,44 @@
+openapi: '3.1.0'
+components:
+  ResponsePaginated:
+    type: object
+    properties:
+      severity:
+        type: string
+      summary:
+        type: string
+      pagination:
+        type: object
+        properties:
+          total:
+            type: integer
+          perPage:
+            type: integer
+          currentPage:
+            type: integer
+          lastPage:
+            type: integer
+          firstPage:
+            type: integer
+          firstPageUrl:
+            type: string
+          lastPageUrl:
+            type: string
+          nextPageUrl:
+            type: string
+          previousPageUrl:
+            type: string
+      dataset:
+        type: array
+        items:
+          type: object
+      schema:
+        type: object
+        properties:
+          $schema: { type: string }
+          name: { type: string }
+          title: { type: string }
+          type: { type: string }
+          properties: { type: object }
+          relations: { type: object }
+          

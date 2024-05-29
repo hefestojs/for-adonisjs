@@ -1,0 +1,13 @@
+openapi: '3.1.0'
+components:
+  ResponseError:
+    type: object
+    properties:
+      severity:
+        type: string
+      summary:
+        type: string
+      detail:
+        type: string
+      stack?:
+        type: string

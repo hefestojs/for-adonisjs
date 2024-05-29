@@ -1,0 +1,158 @@
+{
+  "commands": [
+    {
+      "namespace": "bonus",
+      "commandName": "bonus:controller",
+      "description": "Make a new HTTP controller from DB",
+      "args": [
+        {
+          "name": "from",
+          "argumentName": "from",
+          "required": true,
+          "description": "Fill with schema.% or schema.table_name to generate a CONTROLLER for",
+          "type": "string"
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "connectionName",
+          "flagName": "connection-name",
+          "required": false,
+          "type": "string",
+          "alias": "c",
+          "description": "Connection name from where the models will be generated",
+          "default": "default"
+        },
+        {
+          "name": "dir",
+          "flagName": "dir",
+          "required": false,
+          "type": "string",
+          "alias": "d",
+          "description": "Directory inside app/controllers",
+          "default": "/"
+        },
+        {
+          "name": "dirModel",
+          "flagName": "dir-model",
+          "required": false,
+          "type": "string",
+          "alias": "m",
+          "description": "Directory inside app/models",
+          "default": "/"
+        },
+        {
+          "name": "overwrite",
+          "flagName": "overwrite",
+          "required": false,
+          "type": "boolean",
+          "alias": "o",
+          "description": "Overwrite existing Controller file",
+          "default": false
+        },
+        {
+          "name": "openapi",
+          "flagName": "openapi",
+          "required": false,
+          "type": "boolean",
+          "alias": "a",
+          "description": "Basic OpenAPI specifications",
+          "default": false
+        }
+      ],
+      "options": {
+        "startApp": true
+      },
+      "filePath": "commands/bonus_controller.js"
+    },
+    {
+      "namespace": "bonus",
+      "commandName": "bonus:manifest",
+      "description": "Regenerate the manifest file for bonus ace commands",
+      "args": [],
+      "aliases": [],
+      "flags": [],
+      "options": {
+        "startApp": true
+      },
+      "filePath": "commands/bonus_manifest.js"
+    },
+    {
+      "namespace": "bonus",
+      "commandName": "bonus:model",
+      "description": "Make a new Lucid model from DB",
+      "args": [
+        {
+          "name": "from",
+          "argumentName": "from",
+          "required": true,
+          "description": "Fill with schema.% or schema.table_name to generate a MODEL for",
+          "type": "string"
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "connectionName",
+          "flagName": "connection-name",
+          "required": false,
+          "type": "string",
+          "alias": "c",
+          "description": "Connection name from where the models will be generated",
+          "default": "default"
+        },
+        {
+          "name": "dir",
+          "flagName": "dir",
+          "required": false,
+          "type": "string",
+          "alias": "d",
+          "description": "Directory inside app/models",
+          "default": "/"
+        },
+        {
+          "name": "overwrite",
+          "flagName": "overwrite",
+          "required": false,
+          "type": "boolean",
+          "alias": "o",
+          "description": "Overwrite existing Model file",
+          "default": false
+        },
+        {
+          "name": "primaryKey",
+          "flagName": "primary-key",
+          "required": false,
+          "type": "string",
+          "alias": "k",
+          "description": "Custom primary key",
+          "default": "id"
+        },
+        {
+          "name": "noRelations",
+          "flagName": "no-relations",
+          "required": false,
+          "type": "boolean",
+          "alias": "r",
+          "description": "Do not generate relationship bindings (belongsTo)",
+          "default": false
+        },
+        {
+          "name": "openapi",
+          "flagName": "openapi",
+          "required": false,
+          "type": "boolean",
+          "alias": "a",
+          "description": "Basic OpenAPI specifications",
+          "default": false
+        }
+      ],
+      "options": {
+        "startApp": true
+      },
+      "filePath": "commands/bonus_model.js"
+    }
+  ],
+  "version": 1
+}

@@ -1,0 +1,11 @@
+openapi: '3.1.0'
+components:
+  ResponseToken:
+    type: object
+    properties:
+      severity:
+        type: string
+      summary:
+        type: string
+      credentials:
+        type: object

@@ -1,0 +1,13 @@
+openapi: '3.1.0'
+components:
+  ResponseSuccess:
+    type: object
+    properties:
+      severity:
+        type: string
+      summary:
+        type: string    
+      dataset:
+        type: object
+      schema:
+        type: object

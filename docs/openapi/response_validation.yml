@@ -1,0 +1,21 @@
+openapi: '3.1.0'
+components:
+  ResponseValidation:
+    type: object
+    properties:
+      severity:
+        type: string
+      summary:
+        type: string
+      detail:
+        type: array
+        items:
+          type: object
+          properties:
+            message:
+              type: string
+            rule:
+              type: string
+            field:
+              type: string            
+            

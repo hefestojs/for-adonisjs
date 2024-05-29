@@ -1,0 +1,38 @@
+# TODO traduzir para english todas as descriptions
+openapi: '3.1.0'
+components:
+  parameters:
+    Where:
+      in: query
+      name: 'where'
+      required: false
+      schema:
+        type: string
+      description: |
+        Filter resources based on the specified column and its corresponding value, `where[column]=value` or `where[column][operator]=value`.
+      example:
+        { "where[id]": 1 }
+    Join:
+      in: query
+      name: 'join'
+      required: false
+      schema:
+        type: string
+      description: |
+        Add related resources to the primary resource, `join[relation]`.
+    Order:
+      in: query
+      name: 'order'
+      required: false
+      schema:
+        type: string
+      description: |
+        Sort resources based on the specified column, `order[column]=asc` or `order[column]=desc`.
+      example:
+        { "order[id]": 'desc' }
+    PrimaryKey:
+      in: path
+      name: 'id'
+      required: true
+      description: Primary Key
+      

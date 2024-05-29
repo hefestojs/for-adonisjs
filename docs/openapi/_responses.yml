@@ -1,0 +1,57 @@
+openapi: '3.1.0'
+components:
+  responses:
+    Paginated:
+      description: Response with a paginated list of items, including metadata and item schema.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponsePaginated'
+    RecordFound:
+      description: Response indicating a single row was found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponseSuccess'
+    RecordNotFound:
+      description: Response indicating a single row was NOT found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponseError'  
+    RecordDeleted:
+      description: Response indicating a single row was deleted.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponseSuccess'
+    RecordStored:
+      description: Response indicating a successful creation of a new resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponseSuccess'
+    RecordUpdated:
+      description: Response indicating a successful update of an existing resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponseSuccess'
+    ValidationError:
+      description: Response indicating a validation error. Provides information about rules and fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponseValidation'
+    InternalServerError:
+      description: Response indicating an internal server error. Provides error details and diagnostic information.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponseError'
+    ResponseToken:
+      description: Response of a token request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/ResponseToken'
