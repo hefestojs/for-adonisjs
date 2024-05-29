@@ -20,12 +20,12 @@ import pluralize from 'pluralize'
 import { existsSync, writeFileSync, mkdirSync } from 'node:fs'
 import path from 'node:path'
 
-export default class BonusModel extends BaseCommand {
-  static namespace = 'bonus';
-  static commandName = 'bonus:model'
-  static description = 'Make a new Lucid model from DB'
+export default class ForgeModel extends BaseCommand {
+  static namespace = 'hefesto';
+  static commandName = 'forge:model'
+  static description = 'Forge a new Lucid model from a live database'
 
-  @args.string({ description: 'Fill with schema.% or schema.table_name to generate a MODEL for' })
+  @args.string({ description: 'Fill with schema.% or schema.table_name to generate a model for' })
   declare from: string
 
   @flags.string({ alias: 'c', description: 'Connection name from where the models will be generated', default: 'default', required: false })

@@ -1,9 +1,9 @@
 {
   "commands": [
     {
-      "namespace": "bonus",
-      "commandName": "bonus:controller",
-      "description": "Make a new HTTP controller from DB",
+      "namespace": "hefesto",
+      "commandName": "forge:controller",
+      "description": "Forge a new HTTP controller class from a live database",
       "args": [
         {
           "name": "from",
@@ -59,35 +59,44 @@
           "alias": "a",
           "description": "Basic OpenAPI specifications",
           "default": false
+        },
+        {
+          "name": "securityScheme",
+          "flagName": "security-scheme",
+          "required": false,
+          "type": "string",
+          "alias": "s",
+          "description": "Security scheme",
+          "default": "bearer"
         }
       ],
       "options": {
         "startApp": true
       },
-      "filePath": "commands/bonus_controller.js"
+      "filePath": "commands/forge_controller.js"
     },
     {
-      "namespace": "bonus",
-      "commandName": "bonus:manifest",
-      "description": "Regenerate the manifest file for bonus ace commands",
+      "namespace": "hefesto",
+      "commandName": "forge:manifest",
+      "description": "Forge a new Manifest file for hefesto custom ace commands",
       "args": [],
       "aliases": [],
       "flags": [],
       "options": {
         "startApp": true
       },
-      "filePath": "commands/bonus_manifest.js"
+      "filePath": "commands/forge_manifest.js"
     },
     {
-      "namespace": "bonus",
-      "commandName": "bonus:model",
-      "description": "Make a new Lucid model from DB",
+      "namespace": "hefesto",
+      "commandName": "forge:model",
+      "description": "Forge a new Lucid model from a live database",
       "args": [
         {
           "name": "from",
           "argumentName": "from",
           "required": true,
-          "description": "Fill with schema.% or schema.table_name to generate a MODEL for",
+          "description": "Fill with schema.% or schema.table_name to generate a model for",
           "type": "string"
         }
       ],
@@ -151,7 +160,7 @@
       "options": {
         "startApp": true
       },
-      "filePath": "commands/bonus_model.js"
+      "filePath": "commands/forge_model.js"
     }
   ],
   "version": 1

@@ -1,0 +1,28 @@
+{
+  "name": "@hefestojs/for-adonisjs",
+  "version": "1.0.0",
+  "description": "Artifacts for Adonis",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hefestojs/for-adonisjs.git"
+  },
+  "keywords": [
+    "adonisjs",
+    "forge",
+    "tools"
+  ],
+  "author": "Marcelo Bonus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hefestojs/for-adonisjs/issues"
+  },
+  "homepage": "https://github.com/hefestojs/for-adonisjs#readme"
+}

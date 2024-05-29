@@ -1,8 +1,8 @@
-import { HttpContext } from '@adonisjs/core/http'
 import swaggerJSDoc from 'swagger-jsdoc'
 import path from 'node:path'
 import fs from 'node:fs'
 import app from '@adonisjs/core/services/app'
+import { HttpContext } from '@adonisjs/core/http'
 
 export default class AppSwagger {
 
@@ -37,7 +37,7 @@ export default class AppSwagger {
                     description: packageJson.description,
                 },
             },
-            apis: ['./app/**/*.ts', './plugins/adonisjs-bonus/docs/**/*.yml'],
+            apis: ['./app/**/*.ts', './plugins/hefestojs/docs/**/*.yml'],
         };
 
         const specs = swaggerJSDoc(options);
@@ -45,7 +45,7 @@ export default class AppSwagger {
     }
 
     static async ui(ctx: HttpContext) {
-        const indexFile = path.resolve('./plugins/adonisjs-bonus/resources/swagger.html');
+        const indexFile = path.resolve('./plugins/hefestojs/resources/swagger.html');
         let indexContent = await fs.promises.readFile(indexFile, 'utf8');
             indexContent = indexContent.replace('_SWAGGER_JSON_', '/swagger/json');
 

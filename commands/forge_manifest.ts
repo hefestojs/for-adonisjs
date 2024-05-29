@@ -3,10 +3,10 @@ import path from 'node:path'
 import fs from 'node:fs'
 import { CommandOptions } from '@adonisjs/core/types/ace'
 
-export default class BonusManifest extends BaseCommand {
-  static namespace = 'bonus'
-  static commandName = 'bonus:manifest'
-  static description = 'Regenerate the manifest file for bonus ace commands'
+export default class ForgeManifest extends BaseCommand {
+  static namespace = 'hefesto'
+  static commandName = 'forge:manifest'
+  static description = 'Forge a new Manifest file for hefesto custom ace commands'
 
   static options: CommandOptions = {
     startApp: true,
@@ -14,8 +14,9 @@ export default class BonusManifest extends BaseCommand {
 
   async run() {
     try {
-      const directoryPath = './plugins/adonisjs-bonus/commands'
-
+      const currentFilePath = new URL(import.meta.url).pathname
+      const directoryPath = path.join(path.dirname(currentFilePath), '..', 'commands')
+      
       fs.readdir(directoryPath, async (error, files) => {
         if (error) {
           this.logger.error(error.message)
@@ -46,7 +47,7 @@ export default class BonusManifest extends BaseCommand {
             this.logger.error(err.message)
             return
           }
-          this.logger.success('Manifest file generated successfully ' + outputPath)
+          this.logger.success('Manifest file generated successfully (commands/manifest.json)')
         })
       })
     } catch (error) {

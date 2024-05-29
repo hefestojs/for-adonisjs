@@ -7,10 +7,10 @@ import { existsSync, writeFileSync, mkdirSync, appendFile, readFile } from 'node
 import pluralize from 'pluralize'
 import path from 'node:path'
 
-export default class BonusController extends BaseCommand {
-  static namespace = 'bonus';
-  static commandName = 'bonus:controller'
-  static description = 'Make a new HTTP controller from DB'
+export default class ForgeController extends BaseCommand {
+  static namespace = 'hefesto';
+  static commandName = 'forge:controller'
+  static description = 'Forge a new HTTP controller class from a live database'
 
   @args.string({ description: 'Fill with schema.% or schema.table_name to generate a CONTROLLER for' })
   declare from: string
