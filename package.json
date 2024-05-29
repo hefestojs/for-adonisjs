@@ -1,7 +1,7 @@
 {
   "name": "@hefestojs/for-adonisjs",
-  "version": "1.0.0",
-  "description": "Artifacts for Adonis",
+  "version": "1.0.1",
+  "description": "Artifacts for Adonisjs!",
   "main": "index.js",
   "type": "module",
   "directories": {
@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/hefestojs/for-adonisjs/issues"
   },
-  "homepage": "https://github.com/hefestojs/for-adonisjs#readme"
+  "homepage": "https://github.com/hefestojs/for-adonisjs#readme",
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  }
 }

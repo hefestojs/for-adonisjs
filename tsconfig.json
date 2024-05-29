@@ -1,0 +1,15 @@
+{
+    "extends": "@adonisjs/tsconfig/tsconfig.app.json",
+    "compilerOptions": {
+        "resolveJsonModule": true,
+        "rootDir": "./",
+        "outDir": "./build",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true
+    },
+    "exclude": [
+        "node_modules",
+        "build"
+    ]
+}

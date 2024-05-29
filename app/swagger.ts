@@ -22,7 +22,8 @@ export default class AppSwagger {
 
     static async json(ctx: HttpContext) {
 
-        const { default: packageJson } = await import('../../../package.json', {
+        const currentFilePath = new URL(import.meta.url).pathname
+        const { default: packageJson } = await import(path.resolve(currentFilePath, '../../package.json'), {
             assert: {
                 type: "json",
             },

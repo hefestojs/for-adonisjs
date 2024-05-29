@@ -50,7 +50,7 @@ export default class ForgeManifest extends BaseCommand {
           this.logger.success('Manifest file generated successfully (commands/manifest.json)')
         })
       })
-    } catch (error) {
+    } catch (error:any) {
       this.logger.error(error.message)
     }
   }
