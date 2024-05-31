@@ -16,7 +16,7 @@ export default class ForgeManifest extends BaseCommand {
     try {
       const currentFilePath = new URL(import.meta.url).pathname
       const directoryPath = path.join(path.dirname(currentFilePath), '..', 'commands')
-      
+
       fs.readdir(directoryPath, async (error, files) => {
         if (error) {
           this.logger.error(error.message)
@@ -50,7 +50,7 @@ export default class ForgeManifest extends BaseCommand {
           this.logger.success('Manifest file generated successfully (commands/manifest.json)')
         })
       })
-    } catch (error:any) {
+    } catch (error: any) {
       this.logger.error(error.message)
     }
   }

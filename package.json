@@ -1,14 +1,26 @@
 {
   "name": "@hefestojs/for-adonisjs",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "description": "Artifacts for Adonisjs!",
-  "main": "index.js",
   "type": "module",
+  "files": [
+    "build/commands"
+  ],
+  "exports": {
+    "./commands": "./build/commands/main.js",
+    "./controller": "./build/app/controller.js",
+    "./exception": "./build/app/exception.js",
+    "./helper": "./build/app/helper.js",
+    "./model": "./build/app/model.js"
+  },
+  
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "publish": "npm run build && npm version patch && npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -25,7 +37,13 @@
     "url": "https://github.com/hefestojs/for-adonisjs/issues"
   },
   "homepage": "https://github.com/hefestojs/for-adonisjs#readme",
+  "peerDependencies": {
+    "@adonisjs/assembler": "^7.0.0",
+    "@adonisjs/core": "^6.8.0",
+    "@adonisjs/lucid": "^20.5.1"
+  },
   "devDependencies": {
-    "typescript": "^4.0.0"
+    "@adonisjs/tsconfig": "^1.3.0",
+    "typescript": "^5.4.5"
   }
 }

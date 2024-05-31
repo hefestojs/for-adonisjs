@@ -1,12 +1,10 @@
 {
     "extends": "@adonisjs/tsconfig/tsconfig.app.json",
     "compilerOptions": {
-        "resolveJsonModule": true,
+        "declaration": true,
+        "experimentalDecorators": true,
         "rootDir": "./",
-        "outDir": "./build",
-        "strict": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true
+        "outDir": "./build"
     },
     "exclude": [
         "node_modules",
