@@ -4,14 +4,14 @@
   "description": "Artifacts for Adonisjs!",
   "type": "module",
   "files": [
-    "build/commands"
+    "./.build/commands"
   ],
   "exports": {
-    "./commands": "./build/commands/main.js",
-    "./controller": "./build/app/controller.js",
-    "./exception": "./build/app/exception.js",
-    "./helper": "./build/app/helper.js",
-    "./model": "./build/app/model.js"
+    "./commands": "./.build/commands/main.js",
+    "./controller": "./.build/app/controller.js",
+    "./exception": "./.build/app/exception.js",
+    "./helper": "./.build/app/helper.js",
+    "./model": "./.build/app/model.js"
   },
   
   "directories": {

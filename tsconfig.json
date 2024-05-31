@@ -4,10 +4,13 @@
         "declaration": true,
         "experimentalDecorators": true,
         "rootDir": "./",
-        "outDir": "./build"
+        "outDir": "./.build",
+        "types": [
+            "@adonisjs/lucid/orm"
+        ],
     },
     "exclude": [
         "node_modules",
-        "build"
+        ".build"
     ]
 }

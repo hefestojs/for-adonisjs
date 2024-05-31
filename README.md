@@ -15,30 +15,11 @@ Instale as dependências necessárias, incluindo o `@adonisjs/lucid` para que os
   node ace configure @adonisjs/lucid
 ```
 
-# Configuração
-Após a instalação, você precisa configurar seu projeto para usar o plugin:
-
-No arquivo package.json, adicione um álias para os arquivos do plugin:
-```json
-"imports": {
-    "#hefesto/*": "./plugins/hefesto/*.js"
-}
-```
-
-No arquivo tsconfig.json, adicione aqui também um álias para os arquivos JavaScript do plugin:
-```json
-"compilerOptions": {
-    "paths": {
-      "#hefesto/*": ["./plugins/hefesto/*.js"],
-    }
-}
-```
-
 No arquivo adonisrc.ts, importe os comandos fornecidos pelo plugin:
 
 ```javascript
 commands: [
-    () => import('#hefesto/commands'),
+    () => import('@hefestojs/for-adonisjs/commands'),
 ],
 ```
 
@@ -50,21 +31,21 @@ Você pode importar models, controllers e utilizar o tratamento de exceções do
 
 for models:
 ```javascript
-import AppModel from '#hefesto/app/model'
+import AppModel from '@hefestojs/for-adonisjs/model'
 
 export default class AuthAccessToken extends AppModel { 
 ```
 
 for controllers:
 ```javascript
-import AppController from '#hefesto/app/controller'
+import AppController from '@hefestojs/for-adonisjs/controller'
 
 export default class AuthClientController extends AppController {
 ```
 
 for a pre-defined exception handler:
 ```javascript
-import AppException from "#hefesto/app/exception"
+import AppException from "@hefestojs/for-adonisjs/exception"
 
 export default class HttpExceptionHandler extends AppException {
 ```
@@ -83,7 +64,7 @@ O comando forge:controller gera automaticamente controladores REST a partir de s
 Para adicionar o Swagger UI ao seu projeto, atualize o arquivo routes.ts para incluir o caminho do Swagger:
 
 ```javascript
-import swagger from '#hefesto/app/swagger'
+import swagger from '@hefestojs/for-adonisjs/swagger'
 
 router.get('/swagger/:path?', swagger.path)
 ```
