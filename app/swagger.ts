@@ -1,7 +1,7 @@
 import swaggerJSDoc from 'swagger-jsdoc'
 import path from 'node:path'
 import fs from 'node:fs'
-import app from '@adonisjs/core/services/app'
+// import app from '@adonisjs/core/services/app'
 import { HttpContext } from '@adonisjs/core/http'
 
 export default class AppSwagger {
@@ -14,7 +14,7 @@ export default class AppSwagger {
       case 'ui':
         return AppSwagger.ui(ctx)
       default:
-        const filePath = app.relativePath(`./node_modules/swagger-ui-dist/${ctx.params['path']}`)
+        const filePath = `./node_modules/swagger-ui-dist/${ctx.params['path']}`
         return ctx.response.download(filePath)
     }
   }

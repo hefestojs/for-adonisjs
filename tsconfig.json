@@ -6,6 +6,7 @@
         "rootDir": "./",
         "outDir": "./.build",
         "types": [
+            "@adonisjs/core",
             "@adonisjs/lucid/orm"
         ],
     },
