@@ -1,8 +1,8 @@
+import { HttpContext } from '@adonisjs/core/http'
 import swaggerJSDoc from 'swagger-jsdoc'
 import path from 'node:path'
 import fs from 'node:fs'
-// import app from '@adonisjs/core/services/app'
-import { HttpContext } from '@adonisjs/core/http'
+import HHelper from './helper.js'
 
 export default class AppSwagger {
   static async path(ctx: HttpContext) {
@@ -20,15 +20,18 @@ export default class AppSwagger {
   }
 
   static async json(ctx: HttpContext) {
-    const currentFilePath = new URL(import.meta.url).pathname
-    const { default: packageJson } = await import(
-      path.resolve(currentFilePath, '../../package.json'),
-      {
-        assert: {
-          type: 'json',
-        },
-      }
-    )
+    const projectRoot = HHelper.projectRoot()
+    const packageJsonPath = path.resolve(projectRoot, 'package.json')
+
+    if (!packageJsonPath) {
+      throw new Error('package.json not found')
+    }
+
+    const { default: packageJson } = await import(packageJsonPath, {
+      assert: {
+        type: 'json',
+      },
+    })
 
     const options = {
       definition: {
@@ -39,7 +42,7 @@ export default class AppSwagger {
           description: packageJson.description,
         },
       },
-      apis: ['./app/**/*.ts', './node_modules/@hefestojs/for-adonisjs/docs/**/*.yml'],
+      apis: ['./app/**/*.ts', './node_modules/@hefestojs/for-adonisjs/docs/openapi/**/*.yml'],
     }
 
     const specs = swaggerJSDoc(options)
@@ -47,7 +50,7 @@ export default class AppSwagger {
   }
 
   static async ui(ctx: HttpContext) {
-    const indexFile = path.resolve('./node_modules/@hefestojs/for-adonisjs/resources/swagger.html')
+    const indexFile = path.resolve('./node_modules/@hefestojs/for-adonisjs/pages/swagger.html')
     let indexContent = await fs.promises.readFile(indexFile, 'utf8')
     indexContent = indexContent.replace('_SWAGGER_JSON_', '/swagger/json')
 

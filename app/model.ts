@@ -1,5 +1,5 @@
 import { BaseModel } from '@adonisjs/lucid/orm'
-import AppHelper from './helper.js'
+import HHelper from './helper.js'
 
 type Property = {
   label?: string
@@ -20,7 +20,7 @@ type Schema = {
   relations: { [key: string]: Relation }
 }
 
-export default class AppModel extends BaseModel {
+export default class HBaseModel extends BaseModel {
   static title?: string
   static customName?: string
   static schema: Schema = {
@@ -55,7 +55,7 @@ export default class AppModel extends BaseModel {
     const properties: { [key: string]: Property } = {}
     columnDefinitions.forEach((columnDefinition: any, key: string) => {
       properties[key] = {}
-      properties[key]['label'] = AppHelper.prettify(key.toString())
+      properties[key]['label'] = HHelper.prettify(key.toString())
       for (const metaKey in columnDefinition.meta) {
         properties[key][metaKey] = columnDefinition.meta[metaKey]
       }
@@ -112,7 +112,7 @@ export default class AppModel extends BaseModel {
       }
     }
 
-    const queryParams = AppHelper.serializeQueryParams({ where, join, order, limit })
+    const queryParams = HHelper.serializeQueryParams({ where, join, order, limit })
     const query = this.queryWith(join, order)
 
     for (const column in where) {
@@ -131,7 +131,7 @@ export default class AppModel extends BaseModel {
 
     const paginated = await query.paginate(page, limit)
     paginated.baseUrl(`/${baseUrl}?${queryParams}`)
-    const paginatedMeta = AppHelper.normalizeMeta(paginated.getMeta())
+    const paginatedMeta = HHelper.normalizeMeta(paginated.getMeta())
     return {
       severity: 'success',
       summary: `Dataset retrieved Successfully with (${paginatedMeta.total}) records.`,

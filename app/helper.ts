@@ -1,4 +1,7 @@
-export default class AppHelper {
+import * as fs from 'node:fs'
+import * as path from 'node:path'
+
+export default class HHelper {
   static prettify(snake_text: string) {
     return snake_text
       .toLowerCase()
@@ -49,5 +52,20 @@ export default class AppHelper {
       }
     })
     return parts.join('&')
+  }
+
+  static projectRoot() {
+    const currentFilePath = new URL(import.meta.url).pathname
+
+    let dir = path.dirname(currentFilePath)
+    while (!fs.existsSync(path.join(dir, '@hefestojs'))) {
+      const parentDir = path.resolve(dir, '..')
+      if (parentDir === dir) {
+        throw new Error('Project root not found')
+      }
+      dir = parentDir
+    }
+
+    return path.resolve(dir, '../')
   }
 }

@@ -4,24 +4,30 @@
   "description": "Artifacts for Adonisjs!",
   "type": "module",
   "files": [
-    "./.build/commands"
+    "./.build",
+    "./docs",
+    "./resources",
+    "./README.md",
+    "./scripts/postinstall.js"
   ],
   "exports": {
     "./commands": "./.build/commands/main.js",
+    "./provider": "./.build/app/provider.js",
     "./controller": "./.build/app/controller.js",
     "./exception": "./.build/app/exception.js",
     "./helper": "./.build/app/helper.js",
     "./model": "./.build/app/model.js",
     "./swagger": "./.build/app/swagger.js"
   },
-  
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "publish": "npm run build && npm version patch && npm publish --access public"
+    "watch": "tsc --watch",
+    "publish": "npm run build && npm version patch && npm publish --access public",
+    "postinstall": "node scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
@@ -38,15 +44,24 @@
     "url": "https://github.com/hefestojs/for-adonisjs/issues"
   },
   "homepage": "https://github.com/hefestojs/for-adonisjs#readme",
-  "peerDependencies": {
+  "dependencies": {
     "@adonisjs/assembler": "^7.0.0",
     "@adonisjs/core": "^6.8.0",
-    "@adonisjs/lucid": "^20.5.1"
-  },
-  "dependencies": {
+    "@adonisjs/lucid": "^20.6.0",
     "@adonisjs/tsconfig": "^1.3.0",
-    "typescript": "^5.4.5",
+    "@babel/parser": "^7.24.6",
+    "@babel/traverse": "^7.24.6",
+    "esprima": "^4.0.1",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-dist": "^5.17.2"
+    "swagger-ui-dist": "^5.17.2",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.0.0",
+    "@adonisjs/core": "^6.8.0",
+    "@adonisjs/tsconfig": "^1.3.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-dist": "^5.17.2",
+    "typescript": "^5.4.5"
   }
 }

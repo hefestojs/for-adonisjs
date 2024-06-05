@@ -73,19 +73,17 @@
       "options": {
         "startApp": true
       },
-      "filePath": "commands/forge_controller.js"
+      "filePath": "forge_controller.js"
     },
     {
       "namespace": "hefesto",
       "commandName": "forge:manifest",
       "description": "Forge a new Manifest file for hefesto custom ace commands",
       "args": [],
-      "aliases": [],
-      "flags": [],
       "options": {
         "startApp": true
       },
-      "filePath": "commands/forge_manifest.js"
+      "filePath": "forge_manifest.js"
     },
     {
       "namespace": "hefesto",
@@ -160,7 +158,7 @@
       "options": {
         "startApp": true
       },
-      "filePath": "commands/forge_model.js"
+      "filePath": "forge_model.js"
     }
   ],
   "version": 1
