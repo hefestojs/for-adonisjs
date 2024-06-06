@@ -6,7 +6,7 @@
   "files": [
     "./.build",
     "./docs",
-    "./resources",
+    "./pages",
     "./README.md",
     "./scripts/postinstall.js"
   ],
@@ -26,7 +26,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "watch": "tsc --watch",
-    "publish": "npm run build && npm version patch && npm publish --access public",
+    "release": "npm version patch && npm publish --access public",
     "postinstall": "node scripts/postinstall.js"
   },
   "repository": {
