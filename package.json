@@ -1,6 +1,6 @@
 {
   "name": "@hefestojs/for-adonisjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Artifacts for Adonisjs!",
   "type": "module",
   "files": [
