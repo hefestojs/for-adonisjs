@@ -4,15 +4,15 @@ import path from 'node:path'
 import fs from 'node:fs'
 import HHelper from './helper.js'
 
-export default class AppSwagger {
+export default class HSwagger {
   static async path(ctx: HttpContext) {
     switch (ctx.params['path']) {
       case undefined:
-        return AppSwagger.ui(ctx)
+        return HSwagger.ui(ctx)
       case 'json':
-        return AppSwagger.json(ctx)
+        return HSwagger.json(ctx)
       case 'ui':
-        return AppSwagger.ui(ctx)
+        return HSwagger.ui(ctx)
       default:
         const filePath = `./node_modules/swagger-ui-dist/${ctx.params['path']}`
         return ctx.response.download(filePath)

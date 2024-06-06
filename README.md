@@ -1,67 +1,67 @@
-# Hefesto plugin for AdonisJS
-Hefesto apresenta uma suite robusta de utilitários que visam otimizar e acelerar o desenvolvimento de APIs RESTful dentro do ecossistema AdonisJS, focando em automatizações, convenções e integrações, como OpenAPI para documentação.
+# HefestoJS Forge Tools for AdonisJS
+Hefesto presents a robust suite of utilities designed to optimize and accelerate the development of RESTful APIs within the AdonisJS ecosystem, focusing on automation, conventions, and integrations like OpenAPI for documentation.
 
-# Instalação
-Para instalar o plugin Hefesto, siga os passos abaixo:
-
-Clone o repositório do plugin dentro do seu projeto AdonisJS na pasta `plugins/hefesto`:
-```zsh
-  git clone https://github.com/hefestojs/adonisjs-plugin.git plugins/hefesto
-```
-
-Instale as dependências necessárias, incluindo o `@adonisjs/lucid` para que os arquivos possam ser gerados baseados na estrutura do banco de dados:
+## Installation
+To install the package, run the following command:
 
 ```zsh
-  node ace configure @adonisjs/lucid
+  npm install @hefestojs/for-adonijs
 ```
 
-No arquivo adonisrc.ts, importe os comandos fornecidos pelo plugin:
+After installation, verify that the imports have been added to the `adonisrc.ts` file. If not, add the following lines:
 
 ```javascript
 commands: [
-    () => import('@hefestojs/for-adonisjs/commands'),
+  // outros imports ...
+  () => import('@hefestojs/for-adonisjs/commands'),
+],
+
+providers: [
+  // outros imports ...
+  () => import('@hefestojs/for-adonisjs/provider'),
 ],
 ```
 
-# Uso
-O plugin Hefesto permite a importação dos seus recursos e a execução de comandos para facilitar o desenvolvimento:
+## Usage
+The HefestoJS package allows the import of its resources and the execution of commands to streamline development:
 
-## Importação de Recursos
-Você pode importar models, controllers e utilizar o tratamento de exceções do plugin conforme necessário:
+### Importation
+You can import resources for models, controllers, and exception handling as needed:
 
-for models:
+For models:
 ```javascript
-import AppModel from '@hefestojs/for-adonisjs/model'
+import HBaseModel from '@hefestojs/for-adonisjs/model'
 
-export default class AuthAccessToken extends AppModel { 
+export default class AuthAccessToken extends HBaseModel { 
 ```
 
-for controllers:
+For controllers:
 ```javascript
-import AppController from '@hefestojs/for-adonisjs/controller'
+import HController from '@hefestojs/for-adonisjs/controller'
 
-export default class AuthClientController extends AppController {
+export default class AuthClientController extends HController {
 ```
 
-for a pre-defined exception handler:
+For a pre-defined exception handler:
 ```javascript
-import AppException from "@hefestojs/for-adonisjs/exception"
+import HExceptionHandler from "@hefestojs/for-adonisjs/exception"
 
-export default class HttpExceptionHandler extends AppException {
+export default class HttpExceptionHandler extends HExceptionHandler {
 ```
 
-## Comandos Disponíveis
-Os comandos a seguir estão disponíveis para facilitar a geração de models e controllers:
+### Available Commands
+The following commands are available to facilitate the generation of models and controllers:
 
 ```zsh
 node ace forge:model --help
 
 node ace forge:controller --help
 ```
-O comando forge:controller gera automaticamente controladores REST a partir de schemas ou tabelas do banco de dados. Os controllers gerados suportam as operações CRUD (Create, Read, Update, Delete) e incluem anotações OpenAPI para cada método, automaticamente disponibilizando a documentação da API pela UI do Swagger, acessível pela rota configurada.
 
-## Integração com Swagger UI
-Para adicionar o Swagger UI ao seu projeto, atualize o arquivo routes.ts para incluir o caminho do Swagger:
+The `forge:controller` command automatically generates REST controllers from database schemas or tables. The generated controllers support CRUD operations (Create, Read, Update, Delete) and include OpenAPI annotations for each method, automatically providing API documentation via the Swagger UI, accessible through the configured route.
+
+### Integration with Swagger UI
+To add Swagger UI to your project, update the `routes.ts` file to include the Swagger path:
 
 ```javascript
 import swagger from '@hefestojs/for-adonisjs/swagger'
@@ -69,5 +69,8 @@ import swagger from '@hefestojs/for-adonisjs/swagger'
 router.get('/swagger/:path?', swagger.path)
 ```
 
-### Considerações Finais
-A instalação e configuração do plugin Hefesto acrescentam funcionalidades essenciais para acelerar o desenvolvimento de APIs com documentação automatizada, além de seguir as boas práticas de design e arquitetura de software. Utilize os recursos fornecidos pelo plugin conforme a necessidade de seu projeto para maximizar sua eficiência e qualidade do código.
+## Final Considerations
+Installing and configuring the HefestoJS package adds essential functionalities to accelerate API development with automated documentation, while adhering to best practices in software design and architecture. Utilize the resources provided by the package as needed to maximize efficiency and code quality in your project.
+
+## Contribute
+Help improve the development experience of AdonisJS by contributing enhancements to the package. The main goal of the package is to reduce repetitive tasks, allowing developers to focus on the user experience of their software.
