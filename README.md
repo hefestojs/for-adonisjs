@@ -25,7 +25,7 @@ providers: [
 ## Usage
 The HefestoJS package allows the import of its resources and the execution of commands to streamline development:
 
-### Importation
+### Importing package features
 You can import resources for models, controllers, and exception handling as needed:
 
 For models:
