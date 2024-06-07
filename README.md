@@ -5,7 +5,7 @@ Hefesto presents a robust suite of utilities designed to optimize and accelerate
 To install the package, run the following command:
 
 ```zsh
-  npm install @hefestojs/for-adonijs
+  npm i @hefestojs/for-adonisjs
 ```
 
 After installation, verify that the imports have been added to the `adonisrc.ts` file. If not, add the following lines:
