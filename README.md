@@ -2,7 +2,7 @@
 Hefesto presents a robust suite of utilities designed to optimize and accelerate the development of RESTful APIs within the AdonisJS ecosystem, focusing on automation, conventions, and integrations like OpenAPI for documentation.
 
 ## Installation
-To install the package, run the following command:
+To install the package, run the following command inside a AdonisJS project:
 
 ```zsh
   npm i @hefestojs/for-adonisjs
