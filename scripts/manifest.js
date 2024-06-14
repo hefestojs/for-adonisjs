@@ -4,10 +4,10 @@ import fs from 'node:fs'
 async function generateManifest() {
   try {
     const currentFilePath = new URL(import.meta.url).pathname
-    const directoryPath = path.join(path.dirname(currentFilePath), '../.build', 'commands')
+    const directoryPath = path.join(path.dirname(currentFilePath), '../build', 'commands')
     fs.readdir(directoryPath, async (error, files) => {
       if (error) {
-        this.logger.error(error.message)
+        console.error(error.message)
         return
       }
       const tsFiles = files.filter((file) => path.extname(file) === '.js' && file !== 'main.js')

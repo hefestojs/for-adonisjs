@@ -39,7 +39,7 @@ export default class ForgeModel extends BaseCommand {
     })
   }
 
-  @args.string({ description: 'Fill with schema.% or schema.table_name to generate a model for' })
+  @args.string({ description: 'Use schema.% or schema.table_name to generate model for the corresponding database schema.' })
   declare from: string
 
   @flags.string({ alias: 'c', description: 'Connection name from where the models will be generated', default: 'default', required: false })

@@ -30,7 +30,7 @@ export default class ForgeController extends BaseCommand {
   }
 
   @args.string({
-    description: 'Fill with schema.% or schema.table_name to generate a CONTROLLER for',
+    description: 'Use schema.% or schema.table_name to generate a controller for the corresponding database schema.',
   })
   declare from: string
 

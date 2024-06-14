@@ -50,7 +50,7 @@ export default class HSwagger {
   }
 
   static async ui(ctx: HttpContext) {
-    const indexFile = path.resolve('./node_modules/@hefestojs/for-adonisjs/pages/swagger.html')
+    const indexFile = path.resolve('./node_modules/@hefestojs/for-adonisjs/docs/openapi/swagger.html')
     let indexContent = await fs.promises.readFile(indexFile, 'utf8')
     indexContent = indexContent.replace('_SWAGGER_JSON_', '/swagger/json')
 

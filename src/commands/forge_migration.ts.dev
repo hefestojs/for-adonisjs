@@ -1,0 +1,38 @@
+import { BaseCommand, Kernel, args, flags } from '@adonisjs/core/ace'
+import type { CommandOptions, ParsedOutput, UIPrimitives } from '@adonisjs/core/types/ace'
+import { ApplicationService } from '@adonisjs/core/types'
+import db from '@adonisjs/lucid/services/db'
+
+export default class ForgeMigration extends BaseCommand {
+  static namespace = 'hefesto'
+  static commandName = 'forge:migration'
+  static description = 'Forge a new migration file from a live database'
+  private db!: typeof db
+  private lucid!: any
+
+  constructor(
+    app: ApplicationService,
+    kernel: Kernel,
+    parsed: ParsedOutput,
+    ui: UIPrimitives,
+    prompt: Kernel['prompt']
+  ) {
+    super(app, kernel, parsed, ui, prompt)
+    app.container.make('lucid.db').then((_db) => {
+      this.db = _db
+    })
+  }
+  
+  static options: CommandOptions = {
+    startApp: true,
+  }
+
+  @args.string({
+    description: 'Use schema.% or schema.table_name to generate a migration for the corresponding database schema.',
+  })
+  declare from: string
+  
+  async run(){
+    this.logger.info(`Validator from ${this.from}`)
+  }
+}
