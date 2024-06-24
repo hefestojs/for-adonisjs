@@ -36,22 +36,28 @@ export default class HHelper {
     const parts: any = []
 
     Object.keys(params).forEach((key) => {
-      if (params.hasOwnProperty(key)) {
-        const value = params[key]
-        if (typeof value === 'object' && value !== null) {
-          for (const subKey in value) {
-            if (value.hasOwnProperty(subKey)) {
-              parts.push(
-                `${encodeURIComponent(key)}[${encodeURIComponent(subKey)}]=${encodeURIComponent(value[subKey])}`
-              )
+      const value = params[key];
+      if (typeof value === 'object' && value !== null) {
+        for (const subKey in value) {
+          if (value.hasOwnProperty(subKey)) {
+            const subValue = value[subKey];
+            if (typeof subValue === 'object' && subValue !== null) {
+              for (const subSubKey in subValue) {
+                if (subValue.hasOwnProperty(subSubKey)) {
+                  parts.push(`${encodeURIComponent(key)}[${encodeURIComponent(subKey)}][${encodeURIComponent(subSubKey)}]=${encodeURIComponent(subValue[subSubKey])}`)
+                }
+              }
+            } else {
+              parts.push(`${encodeURIComponent(key)}[${encodeURIComponent(subKey)}]=${encodeURIComponent(subValue)}`)
             }
           }
-        } else {
-          parts.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
         }
+      } else {
+        parts.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
       }
     })
-    return parts.join('&')
+    
+    return parts.join('&').replace(/%25/g, '%')
   }
 
   static projectRoot() {
