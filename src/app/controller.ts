@@ -1,1 +1,1 @@
-export default class HController {}
+export default class HBaseController {}

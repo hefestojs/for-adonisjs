@@ -114,10 +114,10 @@ export default class ForgeController extends BaseCommand {
         return this.logger.error(`${controllerFile}.ts already exists!`)
       }
 
-      imports += `import HController from '@hefestojs/for-adonisjs/controller'\n`
+      imports += `import HBaseController from '@hefestojs/for-adonisjs/controller'\n`
       imports += `import ${modelName} from '${modelImport}'\n`
 
-      let content = `\nexport default class ${controllerName} extends HController {\n\n`
+      let content = `\nexport default class ${controllerName} extends HBaseController {\n\n`
 
       if (this.openapi)
         content += `  ${OpenApiHelper.controllerEndpoint('index', endpointPath, modelName)}\n`

@@ -60,6 +60,9 @@ export default class ForgeModel extends BaseCommand {
   @flags.boolean({ alias: 'a', description: 'Basic OpenAPI specifications', default: false, required: false})
   declare openapi: boolean
 
+  @flags.boolean({ alias: 'l', description: 'List all available tables', required: false })
+  declare listTables: boolean
+
   static options: CommandOptions = {
     startApp: true,
   }
@@ -75,6 +78,11 @@ export default class ForgeModel extends BaseCommand {
     const tables = await await this.lucid.getAllTables(this.from)
     if (!tables.length) {
       return this.logger.error(`Model not generated: ${this.from} not found!`)
+    }
+
+    if (this.listTables) {
+      console.log(tables.join('\n'))
+      return
     }
 
     await Promise.all(
