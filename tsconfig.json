@@ -7,7 +7,8 @@
         "outDir": "./build",
         "types": [
             "@adonisjs/core",
-            "@adonisjs/lucid/orm"
+            "@adonisjs/lucid/orm",
+            "@types/swagger-jsdoc"
         ],
     },
     "exclude": [

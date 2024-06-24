@@ -117,15 +117,20 @@ export default class HBaseModel extends BaseModel {
 
     for (const column in where) {
       const condition = where[column]
-      for (let operator in condition) {
-        let value = condition[operator]
-        if (operator === '0') {
-          operator = '='
-        }
-        if (operator === 'in') {
-          value = value.split(';')
-        }
-        query.where(column, operator, value)
+      if (condition instanceof Object) {
+        for (let operator in condition) {
+          let value = condition[operator]
+          if (operator === '0') {
+            operator = '='
+          }
+          if (operator === 'in') {
+            value = value.split(';')
+          }
+          query.where(column, operator, value)
+        }  
+      }
+      else {
+        query.where(column, condition)
       }
     }
 
