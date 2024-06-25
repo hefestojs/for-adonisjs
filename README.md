@@ -37,9 +37,9 @@ export default class AuthAccessToken extends HBaseModel {
 
 For controllers:
 ```javascript
-import HController from '@hefestojs/for-adonisjs/controller'
+import HBaseController from '@hefestojs/for-adonisjs/controller'
 
-export default class AuthClientController extends HController {
+export default class AuthClientController extends HBaseController {
 ```
 
 For a pre-defined exception handler:
