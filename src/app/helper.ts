@@ -74,4 +74,24 @@ export default class HHelper {
 
     return path.resolve(dir, '../')
   }
+
+  static parseQueryJSON(jsonString: string) {
+    let newObj : any = {}
+    try {
+      let parsedObj = JSON.parse(jsonString)
+      for (let key in parsedObj) {
+        let value = parsedObj[key]
+        let match = key.match(/\[(.*?)\]/)
+
+        if (match) {
+          let newKey = match[1]
+          newObj[newKey] = value
+        }
+      }
+    }
+    catch (e) {
+      return jsonString
+    }
+    return newObj
+  }
 }

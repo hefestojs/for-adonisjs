@@ -48,7 +48,6 @@ export default class HExceptionHandler extends ExceptionHandler {
           .status(422)
           .json({ severity: 'error', summary: 'Field Validation Failed!', detail: error.messages })
       default:
-        console.error(new Date(), error)
         return ctx.response.status(error.status).json({
           severity: 'error',
           summary: error.code || 'Internal Server Error',

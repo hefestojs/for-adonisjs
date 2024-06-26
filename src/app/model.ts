@@ -113,21 +113,24 @@ export default class HBaseModel extends BaseModel {
     }
 
     const queryParams = HHelper.serializeQueryParams({ where, join, order, limit })
-    const query = this.queryWith(join, order)
+    const whereParsed = HHelper.parseQueryJSON(where)
+    const orderParsed = HHelper.parseQueryJSON(order)
 
-    for (const column in where) {
-      const condition = where[column]
+    const query = this.queryWith(join, orderParsed)
+
+    for (const column in whereParsed) {
+      const condition = whereParsed[column]
       if (condition instanceof Object) {
         for (let operator in condition) {
           let value = condition[operator]
           if (operator === '0') {
-            operator = '='
+            operator = '=';
           }
           if (operator === 'in') {
-            value = value.split(';')
+            value = value.split(';');
           }
           query.where(column, operator, value)
-        }  
+        }
       }
       else {
         query.where(column, condition)
