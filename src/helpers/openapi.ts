@@ -2,8 +2,9 @@ import StringHelper from './string.js'
 
 export default class OpenApiHelper {
   static modelDefinitions(lucid: any, modelName: string, columns: any) {
-    let specs = `\n/** @openapi definitions:\n`
-    specs += ` *   ${modelName}:\n`
+    let specs = `\n/** @openapi components:\n`
+    specs += ` *  schemas:\n`
+    specs += ` *   Model ${modelName}:\n`
     specs += ` *     type: object\n`
     specs += ` *     properties:\n`
 
@@ -59,7 +60,7 @@ export default class OpenApiHelper {
    *       content:
    *         application/json:
    *           schema:
-   *             $ref: '#/definitions/${modelName}' 
+   *             $ref: '#/components/schemas/Model ${modelName}'
    *     responses:
    *       200:
    *         $ref: '#/components/responses/RecordStored'
@@ -97,7 +98,7 @@ export default class OpenApiHelper {
    *       content:
    *         application/json:
    *           schema:
-   *             $ref: '#/definitions/${modelName}' 
+   *             $ref: '#/components/schemas/Model ${modelName}'
    *     responses:
    *       200:
    *        $ref: '#/components/responses/RecordUpdated'
