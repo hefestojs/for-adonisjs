@@ -18,6 +18,7 @@ export default class LucidHelper {
       this.schema = splitted[0]
       this.table = splitted[1]
     } else {
+      this.schema = 'public'
       this.table = splitted[0]
     }
     return { schema: this.schema, table: this.table }
