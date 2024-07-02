@@ -42,7 +42,7 @@ export default class HSwagger {
           description: packageJson.description,
         },
       },
-      apis: ['./app/**/*.ts', './node_modules/@hefestojs/for-adonisjs/docs/openapi/**/*.yml'],
+      apis: ['./app/**/*.ts', './**/*.yml', './node_modules/@hefestojs/for-adonisjs/docs/openapi/**/*.yml'],
     }
 
     const specs = swaggerJSDoc(options)
