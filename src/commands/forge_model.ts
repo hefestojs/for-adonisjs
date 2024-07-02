@@ -70,10 +70,7 @@ export default class ForgeModel extends BaseCommand {
   async run() {
     this.lucid = new LucidHelper(this.db)
     this.lucid.primaryKey = this.primaryKey
-
-    if(this.connectionName === 'default') {
-      this.connectionName = this.db.connection().connectionName
-    }
+    this.lucid.connectionName = this.connectionName === 'default' ? this.db.connection().connectionName : this.connectionName
 
     const tables = await await this.lucid.getAllTables(this.from)
     if (!tables.length) {
@@ -107,7 +104,7 @@ export default class ForgeModel extends BaseCommand {
 
         content += `\n\nexport default class ${modelName} extends HBaseModel { \n`
         
-        content += `  static connection = '${this.connectionName}'\n`
+        content += `  static connection = '${this.lucid.connectionName}'\n`
         content += `  static table = '${this.lucid.schema}.${each_table}'\n\n`
 
         Object.entries(columns).forEach(([, column]: [string, any]) => {        

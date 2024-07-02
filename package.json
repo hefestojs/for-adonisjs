@@ -55,7 +55,6 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@adonisjs/lucid": "^20.6.0",
     "@adonisjs/assembler": "^7.0.0",
     "@adonisjs/core": "^6.8.0",
     "@adonisjs/tsconfig": "^1.3.0",

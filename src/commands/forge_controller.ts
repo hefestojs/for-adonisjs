@@ -83,9 +83,8 @@ export default class ForgeController extends BaseCommand {
 
   async run() {
     this.lucid = new LucidHelper(this.db)
-    if (this.connectionName === 'default') {
-      this.connectionName = this.db.connection().connectionName
-    }
+    this.lucid.connectionName = this.connectionName === 'default' ? this.db.connection().connectionName : this.connectionName
+    
     if (this.dir === '/') {
       this.dir = ''
     }
