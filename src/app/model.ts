@@ -80,11 +80,18 @@ export default class HBaseModel extends BaseModel {
     return query
   }
 
-  static async findOrFailWith({ id, join = {} }: { id: any; join: { [key: string]: any } }) {
+  static async findOrFailWith({ id, join = {} }: { id: any; join: { [key: string]: any } | string[] }) {
     let result = await this.findOrFail(id)
     if (result) {
-      for (const relationship of Object.keys(join)) {
-        await result.load(relationship as any, join[relationship])
+      if (Array.isArray(join)) {
+        for (const relationship of join) {
+          await result.load(relationship);
+        }
+      } else {
+        for (const relationship of Object.keys(join)) {
+          const options = join[relationship];
+          await result.load(relationship as any, options ?? (() => { }));
+        }
       }
     }
     return result
