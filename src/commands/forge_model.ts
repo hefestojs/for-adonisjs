@@ -111,7 +111,12 @@ export default class ForgeModel extends BaseCommand {
           const atColumn = (column.is_primary === 'YES' || column.name.toLowerCase() === 'id' || column.name.toLowerCase() === this.primaryKey.toLowerCase()) ? 'isPrimary: true' : ''
           const dataType = this.lucid.dataTypeMapper(column.data_type)
 
-          content += `  @column({${atColumn}})\n`
+          if(dataType === 'DateTime') {
+            content += `  @column.dateTime()\n`
+          } else {
+            content += `  @column({${atColumn}})\n`
+          }
+          
           content += `  declare ${StringHelper.camelCase(column.name, false)}: ${dataType}\n\n`
 
           if (dataType === 'DateTime' && imports.indexOf(`{ DateTime } from 'luxon'`) === -1) {
