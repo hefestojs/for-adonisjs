@@ -14,6 +14,12 @@ export default class HExceptionHandler extends ExceptionHandler {
    */
   async handle(error: any, ctx: HttpContext) {
     switch (error.code) {
+      case 'ERR_BAD_REQUEST':
+        return ctx.response.status(error.response.status).json({
+          severity: 'error',
+          summary: 'Bad Request!',
+          detail: error.response?.data || error.message,
+        })
       case 'E_INVALID_CREDENTIALS':
         return ctx.response.status(400).json({
           severity: 'error',
@@ -52,7 +58,7 @@ export default class HExceptionHandler extends ExceptionHandler {
           severity: 'error',
           summary: error.code || 'Internal Server Error',
           detail: error.message,
-          stack: this.debug ? error.stack : undefined,
+          stack: this.debug ? error : undefined,
         })
     }
   }
