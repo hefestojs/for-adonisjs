@@ -14,6 +14,12 @@ export default class HExceptionHandler extends ExceptionHandler {
    */
   async handle(error: any, ctx: HttpContext) {
     switch (error.code) {
+      case '23505':
+        return ctx.response.status(409).json({
+          severity: 'error',
+          summary: 'Unique Constraint Violation!',
+          detail: error.detail,
+        })
       case 'ERR_BAD_REQUEST':
         return ctx.response.status(error.response.status).json({
           severity: 'error',
@@ -54,11 +60,12 @@ export default class HExceptionHandler extends ExceptionHandler {
           .status(422)
           .json({ severity: 'error', summary: 'Field Validation Failed!', detail: error.messages })
       default:
+        console.log(error)
         return ctx.response.status(error.status).json({
           severity: 'error',
           summary: error.code || 'Internal Server Error',
           detail: error.message,
-          stack: this.debug ? error : undefined,
+          stack: this.debug ? error.stack : undefined,
         })
     }
   }
