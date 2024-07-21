@@ -88,7 +88,6 @@ export default class HBaseModel extends BaseModel {
   }
 
   static async findOrFailWith({ id, join = {}, scopes = {} }: { id: any; join?: { [key: string]: any } | string[], scopes?: { [key: string]: any } }) {
-    console.log('join', join)
     const query = this.queryWith(join)
     for (const scope in scopes) {
       query.withScopes((model: any) => model[scope](scopes[scope]))
