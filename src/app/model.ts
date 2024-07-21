@@ -70,7 +70,7 @@ export default class HBaseModel extends BaseModel {
   }
 
   static queryWith(join: any = {}, orderby: any = {}): any {
-    let query = this.query()
+    const query = this.query()
     Object.keys(join).forEach((model: any) => {
       query.preload(model)
     })
@@ -80,20 +80,12 @@ export default class HBaseModel extends BaseModel {
     return query
   }
 
-  static async findOrFailWith({ id, join = {} }: { id: any; join: { [key: string]: any } | string[] }) {
-    let result = await this.findOrFail(id)
-    if (result) {
-      if (Array.isArray(join)) {
-        for (const relationship of join) {
-          await result.load(relationship);
-        }
-      } else {
-        for (const relationship of Object.keys(join)) {
-          const options = join[relationship];
-          await result.load(relationship as any, options ?? (() => { }));
-        }
-      }
+  static async findOrFailWith({ id, join = {}, scopes = {} }: { id: any; join?: { [key: string]: any } | string[], scopes?: { [key: string]: any } }) {
+    const query = this.queryWith(join)
+    for (const scope in scopes) {
+      query.withScopes((model: any) => model[scope](scopes[scope]))
     }
+    const result = await query.where('id', id).firstOrFail()
     return result
   }
 
@@ -104,13 +96,15 @@ export default class HBaseModel extends BaseModel {
     page = 1,
     limit = 100,
     baseUrl = '',
+    scopes = {},
   }: {
     where?: any
     join?: any
     order?: any
     page?: number
     limit?: number
-    baseUrl?: string
+    baseUrl?: string,
+    scopes?: { [key: string]: any }
   }) {
     if (baseUrl === '') {
       baseUrl = this.table.replace(/_/g, '-')
@@ -124,6 +118,9 @@ export default class HBaseModel extends BaseModel {
     const orderParsed = HHelper.parseQueryJSON(order)
 
     const query = this.queryWith(join, orderParsed)
+    for (const scope in scopes) {
+      query.withScopes((model: any)=>model[scope](scopes[scope]))
+    }
 
     for (const column in whereParsed) {
       const condition = whereParsed[column]
