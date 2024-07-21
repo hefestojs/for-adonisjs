@@ -71,9 +71,16 @@ export default class HBaseModel extends BaseModel {
 
   static queryWith(join: any = {}, orderby: any = {}): any {
     const query = this.query()
-    Object.keys(join).forEach((model: any) => {
-      query.preload(model)
-    })
+    if (Array.isArray(join)) {
+      for (const relationship of join) {
+        query.preload(relationship);
+      }
+    } else {
+      for (const relationship of Object.keys(join)) {
+        const options = join[relationship];
+        query.preload(relationship as any, options ?? (() => { }));
+      }
+    }
     Object.keys(orderby).forEach((col) => {
       query.orderBy(col, orderby[col])
     })
@@ -81,6 +88,7 @@ export default class HBaseModel extends BaseModel {
   }
 
   static async findOrFailWith({ id, join = {}, scopes = {} }: { id: any; join?: { [key: string]: any } | string[], scopes?: { [key: string]: any } }) {
+    console.log('join', join)
     const query = this.queryWith(join)
     for (const scope in scopes) {
       query.withScopes((model: any) => model[scope](scopes[scope]))
