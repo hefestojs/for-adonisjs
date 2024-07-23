@@ -28,7 +28,7 @@ export default class OpenApiHelper {
     action: string,
     endpointPath: string,
     modelName: string,
-    securityScheme: string = 'bearerAuth'
+    securityScheme: string = 'bearer'
   ) {
     switch (action) {
       case 'index':
