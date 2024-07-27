@@ -17,7 +17,7 @@ type Schema = {
   title: string
   type: string
   properties: { [key: string]: Property }
-  relations: { [key: string]: Relation }
+  relationships: { [key: string]: Relation }
 }
 
 export default class HBaseModel extends BaseModel {
@@ -29,7 +29,7 @@ export default class HBaseModel extends BaseModel {
     title: 'undefined',
     type: 'object',
     properties: {},
-    relations: {},
+    relationships: {},
   }
 
   static jsonSchema() {
@@ -39,11 +39,11 @@ export default class HBaseModel extends BaseModel {
     this.schema.properties = {}
     this.schema.properties = this.setSchemaProperties(this['$columnsDefinitions'])
 
-    this.schema.relations = {}
+    this.schema.relationships = {}
     this['$relationsDefinitions'].forEach((relationsDefinition, key: string) => {
-      this.schema.relations[key] = {}
-      this.schema.relations[key]['type'] = relationsDefinition.type
-      this.schema.relations[key]['properties'] = this.setSchemaProperties(
+      this.schema.relationships[key] = {}
+      this.schema.relationships[key]['type'] = relationsDefinition.type
+      this.schema.relationships[key]['properties'] = this.setSchemaProperties(
         relationsDefinition.relatedModel()['$columnsDefinitions']
       )
     })
@@ -140,6 +140,7 @@ export default class HBaseModel extends BaseModel {
           if (operator === 'in') {
             value = value.split(';');
           }
+          // TODO [not in]
           query.where(column, operator, value)
         }
       }
