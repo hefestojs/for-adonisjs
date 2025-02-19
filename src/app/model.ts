@@ -140,7 +140,10 @@ export default class HBaseModel extends BaseModel {
           if (operator === 'in') {
             value = value.split(';');
           }
-          // TODO [not in]
+          if (operator === '!in') {
+            operator = 'not in';
+            value = value.split(';');
+          }
           query.where(column, operator, value)
         }
       }

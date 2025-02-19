@@ -23,15 +23,12 @@ export default class HSwagger {
     const projectRoot = HHelper.projectRoot()
     const packageJsonPath = path.resolve(projectRoot, 'package.json')
 
-    if (!packageJsonPath) {
+    if (!fs.existsSync(packageJsonPath)) {
       throw new Error('package.json not found')
     }
 
-    const { default: packageJson } = await import(packageJsonPath, {
-      assert: {
-        type: 'json',
-      },
-    })
+    const rawData = await fs.promises.readFile(packageJsonPath, 'utf8')
+    const packageJson = JSON.parse(rawData)
 
     const options = {
       definition: {
@@ -42,7 +39,7 @@ export default class HSwagger {
           description: packageJson.description,
         },
       },
-      apis: ['./app/**/*.ts', './**/*.yml', './node_modules/@hefestojs/for-adonisjs/docs/openapi/**/*.yml'],
+      apis: ['./app/**/*.ts', './app/**/*.yml', './node_modules/@hefestojs/for-adonisjs/docs/openapi/**/*.yml'],
     }
 
     const specs = swaggerJSDoc(options)
