@@ -67,7 +67,8 @@ export default class HHelper {
     while (!fs.existsSync(path.join(dir, '@hefestojs'))) {
       const parentDir = path.resolve(dir, '..')
       if (parentDir === dir) {
-        throw new Error('Project root not found')
+        console.error('Project root not found')
+        return '../../../'
       }
       dir = parentDir
     }

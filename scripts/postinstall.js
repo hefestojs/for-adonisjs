@@ -27,6 +27,6 @@ try {
     console.info('Provider import added in adonisrc.ts')
   }
 } catch (err) {
-  console.error(`Failed to write to ${adonisRcPath}: `, err)
+  console.error(`Failed to write to ${adonisRcPath}: `, err.message)
   process.exit(1)
 }
