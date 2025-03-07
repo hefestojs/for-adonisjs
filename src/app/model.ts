@@ -87,12 +87,12 @@ export default class HBaseModel extends BaseModel {
     return query
   }
 
-  static async findOrFailWith({ id, join = {}, scopes = {} }: { id: any; join?: { [key: string]: any } | string[], scopes?: { [key: string]: any } }) {
+  static async findOrFailWith({ where = {}, join = {}, scopes = {} }: { where: any; join?: { [key: string]: any } | string[], scopes?: { [key: string]: any } }) {
     const query = this.queryWith(join)
     for (const scope in scopes) {
       query.withScopes((model: any) => model[scope](scopes[scope]))
     }
-    const result = await query.where('id', id).firstOrFail()
+    const result = await query.where(where).firstOrFail()
     return result
   }
 

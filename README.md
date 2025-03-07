@@ -66,7 +66,9 @@ To add Swagger UI to your project, update the `routes.ts` file to include the Sw
 ```javascript
 import swagger from '@hefestojs/for-adonisjs/swagger'
 
+// Swagger routes should be defined last
 router.get('/swagger/:path?', swagger.path)
+router.get('/:path?', swagger.path)
 ```
 
 ## Final Considerations

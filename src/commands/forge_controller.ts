@@ -152,7 +152,7 @@ export default class ForgeController extends BaseCommand {
       content += `      return response.json({ severity: 'success', summary: 'Showing only Schema!', dataset: new ${modelName}(), schema: ${modelName}.jsonSchema() })\n`
       content += `    }\n`
       content += `    const dataset = await ${modelName}.findOrFailWith({\n`
-      content += `      id: params.id,\n`
+      content += `      where: { [${modelName}.primaryKey]: params.id },\n`
       content += `      join: request.input('join', {})\n`
       content += `    })\n`
       content += `    return response.json({ severity: 'success', summary: 'Record retrieved!', dataset, schema: ${modelName}.jsonSchema() })\n`
